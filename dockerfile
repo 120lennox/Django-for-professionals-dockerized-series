@@ -1,18 +1,17 @@
-#Pull base image
+# Pull base image
+FROM python:3.12.7-alpine
 
-FROM python:3.12.7-slim-bullseye
-
-# set environment
-ENV PIP_DISABLE_PICK_VERSION_CHECK 1
-ENV PYTHONDONTWRITEBYTCODE 1
-ENV PYTHONBUFFERED 1
+# Set environment variables
+ENV PIP_DISABLE_PIP_VERSION_CHECK 1
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
 
 # Set work directory
-WORKDIR /code
+WORKDIR /app
 
-#install dependencies
+# Install dependencies
 COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 
-# copy project
+# Copy project
 COPY . .
